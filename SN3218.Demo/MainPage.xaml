@@ -8,6 +8,16 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <TextBlock FontSize="32" VerticalAlignment="Center">SN3218 I2C LED Driver Demo</TextBlock>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <CheckBox HorizontalAlignment="Center" Click="Button_Click">All On</CheckBox>
+            <TextBlock VerticalAlignment="Center">Brightness</TextBlock>
+            <Slider HorizontalAlignment="Center" Orientation="Vertical" Maximum="255" Minimum="0" Value="127" ValueChanged="Slider_ValueChanged"/>
+        </StackPanel>
     </Grid>
 </Page>
