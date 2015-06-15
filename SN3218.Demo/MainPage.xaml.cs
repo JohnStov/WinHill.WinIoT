@@ -16,6 +16,10 @@ namespace SN3218.Demo
             this.InitializeComponent();
 
             device.Initialize();
+            device.Enable();
+            device.EnableLeds(0x3ffff); // enable all leds
+            device.Output(0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80);
+            device.EnableLeds(0x00);
         }
     }
 }
