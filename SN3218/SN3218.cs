@@ -6,10 +6,11 @@ using Windows.Devices.I2c;
 
 namespace WinHill.Devices
 {
+    // ReSharper disable once InconsistentNaming
     public class SN3218
     {
-        private const int I2C_ADDRESS = 0x54;
-        private const string I2C_CONTROLLER_NAME = "I2C1";
+        private const int I2CAddress = 0x54;
+        private const string I2CControllerName = "I2C1";
 
         private I2cDevice device;
 
@@ -76,11 +77,10 @@ namespace WinHill.Devices
             // initialize I2C communications
             try
             {
-                var i2cSettings = new I2cConnectionSettings(I2C_ADDRESS);
-                i2cSettings.BusSpeed = I2cBusSpeed.FastMode;
-                var deviceSelector = I2cDevice.GetDeviceSelector(I2C_CONTROLLER_NAME);
-                var i2cDeviceControllers = await DeviceInformation.FindAllAsync(deviceSelector);
-                return await I2cDevice.FromIdAsync(i2cDeviceControllers[0].Id, i2cSettings);
+                var deviceSelector = I2cDevice.GetDeviceSelector(I2CControllerName);
+                var i2CDeviceControllers = await DeviceInformation.FindAllAsync(deviceSelector);
+                var i2CSettings = new I2cConnectionSettings(I2CAddress) {BusSpeed = I2cBusSpeed.FastMode};
+                return await I2cDevice.FromIdAsync(i2CDeviceControllers[0].Id, i2CSettings);
             }
             catch (Exception e)
             {
